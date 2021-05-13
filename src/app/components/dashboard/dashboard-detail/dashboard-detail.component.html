@@ -1,0 +1,48 @@
+<div class="box">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <div class="content">
+    <!-- Best practice for this is async pipe with change detection strategy on push -->
+    <div class="card d-flex flex-row" *ngIf="user">
+      <div class="d-flex justify-content-start">
+        <img [src]="user.avatar_url" class="mr-2">
+      </div>
+      <div class="d-flex justify-content-center flex-column">
+        <h4><b>Username: {{ user.login }}</b></h4>
+        <p>Date joined: {{ user.created_at | date: 'mediumDate' }}</p>
+      </div>
+    </div>
+    <table class="table table-striped">
+      <thead class="text-white">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Avatar</th>
+          <th scope="col">User</th>
+        </tr>
+      </thead>
+      <tbody class="text-white">
+        <tr *ngFor="let follower of followers; let i = index">
+          <td>{{ i }}</td>
+          <td>
+            <img [src]="follower.avatar_url" class="mr-2" style="width: 20px">
+          </td>
+          <td>{{ follower.login }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between p-2" *ngIf="followers?.length">
+      <ngb-pagination style="width: auto" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+        (pageChange)="refreshPage()">
+      </ngb-pagination>
+
+      <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshPage()">
+        <option [ngValue]="2">2 items per page</option>
+        <option [ngValue]="4">4 items per page</option>
+        <option [ngValue]="6">6 items per page</option>
+      </select>
+    </div>
+  </div>
+</div>

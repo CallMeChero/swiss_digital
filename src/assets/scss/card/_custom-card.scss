@@ -1,0 +1,147 @@
+@import "../generics";
+
+.background-img{
+  background-image: url("https://3.bp.blogspot.com/-piZWCW2uUbg/W2fPXxkWZgI/AAAAAAAAOu0/eydmMjTIqcwLMHEEr2H7imqoRTxMw4o9QCLcBGAs/s1600/among_trees_night_dribbble.png");
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid $darkBlue;
+  position: relative;
+}
+
+.box{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 750px;
+  height: 750px;
+  background: $backgroundBlue;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0 20px 50px $boxShadowBlue;
+  border: 2px solid $darkBlue;
+  color: white;
+  padding: 20px;
+
+  span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    box-sizing: border-box;
+
+    &:nth-child(1) {
+      transform:rotate(0deg);
+    }
+
+    &:nth-child(2) {
+      transform:rotate(90deg);
+    }
+
+    &:nth-child(3) {
+      transform:rotate(180deg);
+    }
+
+    &:nth-child(4) {
+      transform:rotate(270deg);
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      width:100%;
+      height: 2px;
+      background: $progressLightBlue;
+      animation: animate 4s linear infinite;
+    }
+  }
+
+  .content{
+    position:absolute;
+    top:15px;
+    left:15px;
+    right:15px;
+    bottom:15px;
+    border:1px solid $contentOrange;
+    padding:20px;
+    text-align:center;
+    box-shadow: 0 5px 10px $contentDark;
+
+    h2 {
+      font-size:19px;
+      margin-bottom: 15px;
+    }
+
+    strong {
+      text-decoration: underline;
+    }
+  }
+
+  &::before {
+    content: '';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background: $contentDark;
+    transition:0.5s;
+    pointer-events: none;
+  }
+
+  &:hover::before {
+    left:-50%;
+    transform: skewX(-5deg);
+  }
+
+
+@keyframes animate {
+    0% {
+      transform:scaleX(0);
+      transform-origin: left;
+    }
+    50%
+    {
+      transform:scaleX(1);
+      transform-origin: left;
+    }
+    50.1%
+    {
+      transform:scaleX(1);
+      transform-origin: right;
+
+    }
+
+    100%
+    {
+      transform:scaleX(0);
+      transform-origin: right;
+    }
+  }
+}
+
+
+.card {
+  box-shadow: 0 4px 8px 0 $contentDark;
+  transition: 0.3s;
+  background-color: inherit !important;
+
+  .container {
+    padding: 2px 16px;
+  }
+
+  img {
+    width: 40%;
+  }
+
+  &:hover {
+    box-shadow: 0 8px 16px 0 $contentDark;
+  }
+}
+
+
